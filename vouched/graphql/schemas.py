@@ -1,17 +1,15 @@
 from gql import Client, gql
 
-update_secret_client_key_mutation = gql(
-    """
+update_secret_client_key_mutation = gql('''
   mutation updateSecretClientKey($secretClientKey: String) {
     updateSecretClientKey(secretClientKey: $secretClientKey) {
       secretClientKey
     }
   }
-"""
-)
+''')
 
 
-job_fragment = """
+job_fragment = '''
   id
   status
   request {
@@ -30,10 +28,7 @@ job_fragment = """
     }
   }
   result {
-    success
-    type
-    country
-    state
+
 
     id
     firstName
@@ -41,13 +36,38 @@ job_fragment = """
     middleName
     birthDate
     expireDate
+    issueDate
 
+
+    class
+    motorcycle
+    endorsements
+
+    idAddress {
+      unit
+      streetNumber
+      street
+      country
+      state
+      city
+      postalCode
+      postalCodeSuffix
+    }
+
+    type
+    country
+    state
+    success
+    
     confidences {
       id
+      idQuality
       backId
       selfie
       idMatch
       faceMatch
+      nameMatch
+      birthDateMatch
     }
   }
   errors {
@@ -56,10 +76,9 @@ job_fragment = """
     suggestion
   }
   submitted
-"""
+'''
 
-remove_job_mutation = gql(
-    """
+remove_job_mutation = gql('''
   mutation removeJob(
   $id: ID!
   ) {
@@ -69,12 +88,9 @@ remove_job_mutation = gql(
       %s
     }
   }
-"""
-    % job_fragment
-)
+''' % job_fragment)
 
-submit_job_mutation = gql(
-    """
+submit_job_mutation = gql('''
   mutation submitJob(
     $photo1: Upload
     $photo2: Upload
@@ -94,13 +110,10 @@ submit_job_mutation = gql(
       %s
     }
   }
-"""
-    % job_fragment
-)
+''' % job_fragment)
 
 
-jobs_query = gql(
-    """
+jobs_query = gql('''
   query jobs(
     $id: ID
     $ids: [ID]
@@ -138,6 +151,4 @@ jobs_query = gql(
       }
     }
   }
-"""
-    % job_fragment
-)
+''' % job_fragment )
