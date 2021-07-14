@@ -1,4 +1,4 @@
-wheel=>0.36.2
+wheel>=0.36.2
 opencv_python>=3.4.15.55
 gql>=2.0.0
 pyopenssl>=20.0.1
