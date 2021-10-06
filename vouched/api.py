@@ -37,8 +37,8 @@ class Client:
     """Provide results on AI jobs"""
     data = query(config.get('vouched_server'), jobs_query,
                  params={'ids': ids, 'id': id, 'token': token, 'type': type, 'status': status, 'to': to_date,
-                         'withPhotos': with_photos,
-                         'withPhotoUrls': with_photo_urls,
+                         'withPhotos': 'true' if with_photos else 'false',
+                         'withPhotoUrls': 'true' if with_photo_urls else 'false',
                          'from': from_date, 'sortOrder': sort_order, 'sortBy': sort_by, 'page': page, 'pageSize': page_size}, headers=self.headers())
 
     return data.get('jobs')
