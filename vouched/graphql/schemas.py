@@ -22,6 +22,10 @@ job_fragment = '''
     parameters {
       idPhoto
       userPhoto
+      userPhotoUrl
+      userPhotoDetectUrl
+      idPhotoUrl
+      idPhotoDetectUrl
       firstName
       lastName
       dob
@@ -123,6 +127,7 @@ jobs_query = gql('''
     $to: String
     $from: String
     $withPhotos: Boolean
+    $withPhotoUrls: Boolean
     $sortOrder: String
     $sortBy: String
     $page: Int
@@ -130,6 +135,7 @@ jobs_query = gql('''
   ) {
     jobs(
       withPhotos: $withPhotos
+      withPhotoUrls: $withPhotoUrls
       id: $id
       ids: $ids
       status: $status

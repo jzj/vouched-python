@@ -52,11 +52,9 @@ class Client:
             'sortBy': sort_by,
             'page': page,
             'pageSize': page_size,
+            'withPhotos': with_photos,
+            'withPhotoUrls': with_photo_urls
         }
-        if with_photos:
-            params["withPhotos"] = "true"
-        if with_photo_urls:
-            params["withPhotoUrls"] = "true"
         data = query(
             config.get('vouched_server'),
             jobs_query,
